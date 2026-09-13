@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextGrade Tuition</title>
+  <meta name="description" content="Warm, supportive online tuition helping students reach their next grade." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-main: #f2e4d8;
+      --bg-soft: #ead7c8;
+      --navy: #243b63;
+      --navy-dark: #1b2d4d;
+      --orange: #e58a2f;
+      --orange-dark: #cf7822;
+      --text-dark: #2f2a26;
+      --white-soft: #fffaf5;
+      --ribbon-height: 38px;
+    }
+
+
+      .btn-email {
+      background-color: #0d6efd;
+      color: white;
+      border: 2px solid #0d6efd;
+    }
+
+    .btn-email:hover {
+      background-color: #0b5ed7;
+      color: white;
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(90deg, #22a45a, #20c997);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 24px;
+      font-weight: 700;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-dark);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      padding-top: var(--ribbon-height);
+    }
+
+    .top-ribbon {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1100;
+      min-height: var(--ribbon-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8px 16px;
+      background: linear-gradient(90deg, #22a45a, #20c997);
+      color: white;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .top-ribbon .btn {
+      border-radius: 999px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .navbar {
+      background-color: rgba(255, 250, 245, 0.92);
+      backdrop-filter: blur(8px);
+      top: var(--ribbon-height);
+    }
+
+    .navbar-brand,
+    .nav-link {
+      color: var(--navy-dark) !important;
+      font-weight: 600;
+    }
+
+    .hero,
+    .mentor-section,
+    .founder-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(8px);
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+    .blob-1 {
+      width: 220px;
+      height: 220px;
+      background: rgba(229, 138, 47, 0.22);
+      top: -60px;
+      right: -50px;
+    }
+
+    .blob-2 {
+      width: 180px;
+      height: 180px;
+      background: rgba(36, 59, 99, 0.12);
+      bottom: -40px;
+      left: -30px;
+    }
+
+    .blob-3 {
+      width: 200px;
+      height: 200px;
+      background: rgba(229, 138, 47, 0.16);
+      top: 20px;
+      left: -60px;
+    }
+
+    .blob-4 {
+      width: 160px;
+      height: 160px;
+      background: rgba(36, 59, 99, 0.10);
+      bottom: -30px;
+      right: 10%;
+    }
+
+    .content-layer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      background-color: var(--bg-main);
+      padding: 70px 0 50px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      color: var(--navy-dark);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      max-width: 720px;
+      color: #5a544f;
+      margin: 0 auto 40px;
+    }
+
+    .badge-brand {
+      background-color: rgba(229, 138, 47, 0.14);
+      color: var(--navy-dark);
+      border: 1px solid rgba(229, 138, 47, 0.25);
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      color: var(--navy-dark);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .hero p.lead {
+      color: #4d4a46;
+      max-width: 600px;
+      font-size: 1.3rem;
+    }
+
+    .hero-card,
+    .info-card,
+    .price-card,
+    .contact-card,
+    .logo-box,
+    .side-review,
+    .compare-card,
+    .founder-card,
+    .quote-chip,
+    .contact-link-card {
+      background-color: rgba(255, 250, 245, 0.9);
+      border: 1px solid rgba(36, 59, 99, 0.08);
+      border-radius: 24px;
+      box-shadow: 0 12px 32px rgba(36, 59, 99, 0.08);
+    }
+
+    .hero-card,
+    .info-card,
+    .price-card,
+    .contact-card,
+    .side-review,
+    .compare-card,
+    .founder-card {
+      padding: 30px;
+      height: 100%;
+    }
+
+    .quote-chip {
+      padding: 14px 18px;
+      height: 100%;
+      min-height: 120px;
+    }
+
+    .quote-chip .stars,
+    .side-review .stars {
+      color: var(--orange);
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .quote-chip p,
+    .side-review p {
+      margin-bottom: 0;
+    }
+
+    .quote-chip small {
+      color: var(--navy-dark);
+      font-weight: 700;
+    }
+
+    .logo-box {
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e8d6c7;
+    }
+
+    .logo-placeholder {
+      text-align: center;
+      color: var(--navy-dark);
+    }
+
+    .logo-placeholder .icon {
+      font-size: 56px;
+      line-height: 1;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+
+    .btn-brand {
+      background-color: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 24px;
+      font-weight: 700;
+    }
+
+    .btn-brand:hover {
+      background-color: var(--orange-dark);
+      color: white;
+    }
+
+    .btn-outline-brand {
+      border: 2px solid var(--navy);
+      color: var(--navy);
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-weight: 700;
+      background-color: transparent;
+    }
+
+    .btn-outline-brand:hover {
+      background-color: var(--navy);
+      color: white;
+    }
+
+    .icon-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background-color: rgba(229, 138, 47, 0.14);
+      color: var(--orange);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 14px;
+      font-weight: 800;
+    }
+
+    .mentor-section,
+    .founder-section {
+    background: transparent
+    }
+
+    .check-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    .check-list li {
+      margin-bottom: 12px;
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--orange);
+      font-weight: 800;
+    }
+
+    .price-highlight {
+      font-size: 2rem;
+      color: var(--navy-dark);
+      font-weight: 800;
+    }
+
+    .discount-bubble {
+      display: inline-block;
+      background-color: rgba(229, 138, 47, 0.14);
+      color: var(--navy-dark);
+      border: 1px solid rgba(229, 138, 47, 0.28);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      margin: 10px 0 14px;
+    }
+
+    .quality-badge {
+      display: inline-block;
+      background-color: var(--navy-dark);
+      color: white;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .side-review blockquote {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #3d3834;
+    }
+
+    .review-name {
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 0;
+    }
+
+    .contact-link-card {
+      padding: 0;
+      overflow: hidden;
+      text-align: center;
+      height: 100%;
+    }
+
+    .contact-link-card a {
+      display: block;
+      padding: 28px 20px;
+      text-decoration: none;
+      color: inherit;
+      height: 100%;
+      transition: 0.2s ease;
+      background: rgba(255, 250, 245, 0.96);
+    }
+
+    .contact-link-card a:hover {
+      background: rgba(229, 138, 47, 0.10);
+    }
+
+    .contact-link-card h4 {
+      color: var(--navy-dark);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .contact-link-card .contact-text {
+      color: var(--orange-dark);
+      font-weight: 800;
+      word-break: break-word;
+      font-size: 1.05rem;
+      margin-top: 6px;
+    }
+
+    .contact-link-card .tap-note {
+      display: inline-block;
+      margin-top: 12px;
+      background: var(--navy-dark);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .cta-strip {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      color: white;
+      border-radius: 28px;
+      padding: 36px;
+    }
+
+    .cta-strip h3 {
+      font-weight: 800;
+      color: white;
+    }
+
+    .footer {
+      padding: 30px 0 40px;
+      color: #5e5651;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 991px) {
+      .hero {
+        min-height: auto;
+        padding-top: 120px;
+      }
+
+      body {
+        padding-top: 44px;
+      }
+
+      .navbar {
+        top: 44px;
+      }
+
+      .top-ribbon {
+        font-size: 0.92rem;
+        line-height: 1.2;
+      }
+    }
+    @media (min-width: 992px) {
+  html {
+    font-size: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-ribbon">
+    <div class="d-flex flex-wrap align-items-center justify-content-center gap-3">
+      <span>Hour Sessions starting at just £12. Free trials available.</span>
+      <a href="#contact" class="btn btn-light btn-sm px-3">Get in Touch</a>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">NextGrade Tuition</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#approach">Our Approach</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Get in Touch</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="container content-layer">
+      <div class="row align-items-start g-4">
+        <div class="col-lg-7">
+          <span class="badge-brand">Expert, Warm Tuition for Ages 7–18</span>
+          <span class="badge-brand">Tutor Access Between Lessons — No Extra Cost</span>
+          <span class="badge-brand">7+ Years Supporting Families</span>
+          <span class="badge-brand">Personalised Plans and Lessons for Every Student</span>
+          
+
+          <h1 class="display-4 mb-3">Affordable, Expert Tuition Guiding Students to Their Next Grade.</h1>
+          <p class="lead mb-4">
+            At NextGrade Tuition, our tutors are more than just teachers. With free support available between lessons, they become a trusted link between home and school life, supporting the whole family while helping each child grow in confidence, character and academic progress.
+            <br><br>
+
+            
+            <span class="badge-brand">94% of GCSE students improved by at least one grade</span>
+            <span class="badge-brand">89% of A-Level students improved by at least one grade</span><br>
+            <strong>Start with a free 15-minute consultation and taster session</strong> so we can understand your child and show you exactly how we can help.
+          </p>
+
+<div class="d-flex flex-wrap gap-3">
+  <a href="https://wa.me/+447564444937?text=Hi%20NextGrade%20Tuition%2C%20I%E2%80%99d%20like%20to%20make%20an%20enquiry."
+     class="btn btn-whatsapp btn-lg">
+    Message on WhatsApp
+  </a>
+
+  <a href="mailto:contact@nextgradetuition.co.uk"
+     class="btn btn-email btn-lg fw-bold">
+    Email Us
+  </a>
+</div>
+
+
+
+          <p class="mt-4 mb-0 fw-semibold" style="color: var(--navy-dark);">Proudly rooted in Greater Manchester. Built on generations of teaching experience.</p>
+
+          <div class="row g-3 mt-4 align-items-stretch">
+            <div class="col-6 col-lg-3 d-flex">
+              <div class="hero-card text-center w-100 d-flex flex-column justify-content-center">
+                <h5 class="mb-1 fw-bold" style="color: var(--navy-dark);">Maths</h5>
+                <p class="mb-0">KS2 to A-Level</p>
+              </div>
+            </div>
+
+            <div class="col-6 col-lg-3 d-flex">
+              <div class="hero-card text-center w-100 d-flex flex-column justify-content-center">
+                <h5 class="mb-1 fw-bold" style="color: var(--navy-dark);">Science</h5>
+                <p class="mb-0">KS2 to A-Level</p>
+              </div>
+            </div>
+
+            <div class="col-6 col-lg-3 d-flex">
+              <div class="hero-card text-center w-100 d-flex flex-column justify-content-center">
+                <h5 class="mb-1 fw-bold" style="color: var(--navy-dark);">English</h5>
+                <p class="mb-0">KS2 to GCSE</p>
+              </div>
+            </div>
+
+            <div class="col-6 col-lg-3 d-flex">
+              <div class="hero-card text-center w-100 d-flex flex-column justify-content-center">
+                <h5 class="mb-1 fw-bold" style="color: var(--navy-dark);">11+</h5>
+                <p class="mb-0">Exam preparation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="row g-3">
+
+            <!-- LOGO -->
+            <div class="col-12">
+              <div class="logo-box d-flex align-items-center justify-content-center">
+                <img src="logo.png" alt="NextGrade Logo" style="width: 100%; height: 100%; object-fit: contain;">
+              </div>
+            </div>
+
+            <!-- REVIEWS -->
+            <div class="col-12">
+              <div class="quote-chip h-100">
+                <div class="stars">★★★★★</div>
+                <p>“Our daughter has always been quite shy so it was amazing how comfortable she felt at NextGrade. She never felt rushed or judged and she felt she could ask anything! That made such a difference.”</p>
+                <small>Rachel</small>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="quote-chip h-100">
+                <div class="stars">★★★★★</div>
+                <p>“Communication was really reassuring the whole way through. We always knew what he was working on and where he needed to improve. It just felt very organised but still friendly, which hasn't been easy to find.”</p>
+                <small>Kate</small>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-title">Online tuition that feels personal</h2>
+        <p class="section-subtitle">
+          We understand education is a journey, so we lead with compassion while helping students and families navigate it with confidence and direction.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="info-card">
+            <div class="icon-circle">◎</div>
+            <h4>Younger Years</h4>
+            <p>Supportive tuition that strengthens core skills, builds confidence and creates strong foundations.</p>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="info-card">
+            <div class="icon-circle">↑</div>
+            <h4>GCSE</h4>
+            <p>Exam-focused tuition with mark scheme exploitation, smart revision strategies, revision plans and progress trackers to keep students on course for the next grade.</p>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="info-card">
+            <div class="icon-circle">★</div>
+            <h4>A-Level</h4>
+            <p>Personalised support helping students develop confidence and independence by combining deep subject understanding with proven exam techniques to achieve top grades.</p>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="info-card">
+            <div class="icon-circle">11+</div>
+            <h4>11+ Exams</h4>
+            <p>Targeted preparation to help students feel confident, prepared and ready to perform on the day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section mentor-section" id="approach">
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+
+    <div class="container content-layer">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6"> 
+  <h2 class="section-title">Our Tutors - More Than Just a Teacher</h2> 
+  
+        <p class="mb-4"> 
+          With NextGrade, you’re not just booking a tutor — you’re bringing an 
+          <strong style="color: var(--navy-dark);">expert onboard your child’s educational journey</strong> who genuinely cares about their 
+          <strong style="color: var(--navy-dark);">well-being, progress and future.</strong> 
+          <br><br> 
+          
+          At NextGrade we only select tutors who have demonstrated they 
+          <strong style="color: var(--navy-dark);">know what it takes to succeed</strong> by having achieved a <strong style="color: var(--navy-dark);">minimum of a 
+          grade 8 in the relevant subject.</strong> We also make sure our tutors are people 
+          that can build <strong style="color: var(--navy-dark);">trust, encouragement and real relationships</strong> with the families they support. 
+        </p> 
+        
+        <ul class="check-list"> 
+          <li>We match tutors to your child’s <strong style="color: var(--navy-dark);">personality, not just their subject.</strong></li> 
+          <li>Our tutors have all achieved <strong style="color: var(--navy-dark);">top grades themselves</strong> and know exactly what it takes to succeed.</li> 
+          <li><strong style="color: var(--navy-dark);">Direct, round-the-clock access to tutors</strong> for guidance outside of lessons when needed.</li> 
+          <li>We build <strong style="color: var(--navy-dark);">genuine relationships</strong> that boost confidence, motivation and long-term progress.</li> 
+        </ul> 
+      </div>
+
+
+        <div class="col-lg-6">
+          <div class="contact-card">
+            <h4><strong>What that means for families</strong></h4>
+
+            <p class="mb-3">
+              You are not just booking <strong style="color: var(--navy-dark);">an hour of teaching each week.</strong> You're getting:
+            </p>
+
+            <ul class="check-list">
+              <li>A tutor who <strong style="color: var(--navy-dark);">gets to know your child properly.</strong></li>
+              <li>Support that feels <strong style="color: var(--navy-dark);">personal, not corporate.</strong></li>
+              <li>A <strong style="color: var(--navy-dark);">subject expert onboard your child’s journey</strong> every step of the way.</li>
+              <li><strong style="color: var(--navy-dark);">Guidance for the whole family,</strong> not just the student.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row g-4 mt-4">
+        <div class="col-md-6">
+          <div class="quote-chip">
+            <div class="stars">★★★★★</div>
+            <p>“'Ive never seen him excited to do maths revision before!”</p>
+            <small>Julian</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="quote-chip">
+            <div class="stars">★★★★★</div>
+            <p>“One thing that really stood out was the support between sessions. If he got stuck on homework, he could just send a quick message and get pointed in the right direction quickly. It took a lot of pressure off at home and stopped things from building up.”</p>
+            <small>Alex</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-title">Simple, transparent pricing</h2>
+      <p class="section-subtitle">Affordable support with no inflated agency rates.</p>
+    </div>
+
+    <!-- TOP ROW: standard pricing -->
+    <div class="row g-4 align-items-stretch mt-4">
+
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="price-card text-center w-100">
+          <h4>Younger Years</h4>
+          <div class="price-highlight mb-2">£24</div>
+          <p>per hour</p>
+          <div class="discount-bubble">2 hrs/week - £20/hr</div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="price-card text-center w-100">
+          <h4>GCSE</h4>
+          <div class="price-highlight mb-2">£28</div>
+          <p>per hour</p>
+          <div class="discount-bubble">2 hrs/week - £25/hr</div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="price-card text-center w-100">
+          <h4>A-Level</h4>
+          <div class="price-highlight mb-2">£32</div>
+          <p>per hour</p>
+          <div class="discount-bubble">2 hrs/week - £28/hr</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECOND ROW: offers -->
+    <div class="row g-4 mt-4 justify-content-center">
+
+      <!-- Bring a friend -->
+      <div class="col-lg-5 d-flex">
+        <div class="price-card w-100 border border-2 border-success text-center">
+
+          <span class="badge bg-success mb-2">Best Value</span>
+
+          <h4>👥 Bring a Friend (2:1 Sessions)</h4>
+          <p class="mb-2">Learn together and split the cost.</p>
+
+          <ul class="check-list text-start mb-3">
+            <li>Stay motivated with a friend</li>
+            <li>Structured lessons + homework</li>
+            <li>Better value per session</li>
+          </ul>
+          <div class="discount-bubble">Younger Years - £15/hour each</div>
+          <div class="discount-bubble">GCSE - £18/hour each</div>
+          <div class="discount-bubble">A-Level - £20/hour each</div>
+
+        </div>
+      </div>
+
+      <!-- Group sessions -->
+      <div class="col-lg-5 d-flex">
+        <div class="price-card w-100 border border-2 border-success text-center">
+
+          <span class="badge bg-success mb-2">Best Value</span>
+
+          <h4>👥 Group Sessions (3–6 students)</h4>
+          <p class="mb-3">Our most affordable option.</p>
+
+          <ul class="check-list text-start mb-3">
+            <li>Small group, still personal</li>
+            <li>Great for revision & exams</li>
+            <li>Stay motivated together</li>
+          </ul>
+
+          <div class="discount-bubble fs-5">£12 per hour per student</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+  <section class="section py-5">
+  <div class="container">
+
+    <div class="cta-strip text-center">
+
+      <h3 class="mb-3">Refer a Friend & Earn £50</h3>
+
+      <p class="mb-3">
+        If you know someone who could benefit from our support, refer them to NextGrade.
+        When they sign up, you’ll receive a <strong>£50 gift voucher</strong> as a thank you.
+      </p>
+
+      <p class="mb-0 fw-semibold">
+        Helping students succeed together has its rewards.
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+
+  
+  <section class="section pt-0 pb-5" id="contact">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Make an enquiry</h2>
+        <p class="section-subtitle">Click either of the options below to contact us directly. Just tell us your child’s year group, subject and current situation, and we’ll take it from there.</p>
+      </div>
+
+    <div class="row g-4 justify-content-center">
+
+  <div class="col-md-5">
+    <div class="contact-link-card">
+      <a href="https://wa.me/+447564444937?text=Hi%20NextGrade%20Tuition%2C%20I%E2%80%99d%20like%20to%20make%20an%20enquiry.">
+        <h4>WhatsApp</h4>
+        <div class="contact-text">Message on WhatsApp</div>
+        <div class="tap-note">Tap to open</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="contact-link-card">
+      <a href="mailto:contact@nextgradetuition.co.uk">
+        <h4>Email</h4>
+        <div class="contact-text">contact@nextgradetuition.co.uk</div>
+        <div class="tap-note">Tap to email</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+  <section class="section founder-section py-5" id="founder">
+  <div class="container">
+
+    <div class="row justify-content-center align-items-start g-4">
+
+      <!-- TEXT -->
+      <div class="col-lg-7">
+        <h4 class="fw-bold mb-3" style="color: var(--navy-dark);">Founder’s note</h4>
+
+        <p>
+          NextGrade is built on the idea that tutoring should offer more than just teaching. A great tutor should be a trusted guide, a mentor, a confidant and a strong academic link between home and learning. I want to make this level of service more accessible and affordable for families everywhere.
+        </p>
+
+        <p>
+          Through my own experiences in education both as a student and teacher, I came to realise that the classroom is often far from the ideal learning environment. But with the right support, focused progress can be made that achieves far more than school alone.
+        </p>
+
+        
+
+        <p class="mb-0 fw-semibold" style="color: var(--navy-dark);">
+          The goal is simple: low cost, accessible high quality support.
+        </p>
+      </div>
+
+      <!-- QUOTE -->
+      <div class="col-lg-4">
+        <div class="quote-chip">
+          <div class="stars">★★★★★</div>
+          <p>
+            “From day one, Danny’s been fantastic. He’s very down to earth and easy to speak to—no pressure at all, just a genuine desire to help. It’s clear he really cares about the students and wants them to succeed.”
+          </p>
+          <small>Richard</small>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+  <footer class="footer text-center">
+    <div class="container">
+      <p class="mb-1"><strong>NextGrade Tuition</strong></p>
+      <p class="mb-0">Affordable, supportive online tuition helping students reach their next grade.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
